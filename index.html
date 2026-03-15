@@ -1,21 +1,36 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | SALES MONITOR</title>
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | NETWORK MASTER</title>
     <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@100&display=swap' rel='stylesheet'>
-    <style>:root{--p:#00f0ff;--s:#ff0055;} body{background:#000;color:#fff;font-family:'JetBrains Mono';overflow:hidden;} 
-    .monitor{position:fixed;top:40px;left:40px;border:1px solid var(--p);padding:20px;width:400px;background:rgba(0,0,0,0.9);}
-    .sales-ticker{color:var(--s);font-weight:900;font-size:18px;margin-top:10px;}
-    .log{height:200px;overflow:hidden;font-size:10px;margin-top:10px;border-top:1px solid #333;padding-top:10px;}
+    <style>:root{--p:#00f0ff;--s:#ff0055;} body{background:#000;color:#fff;font-family:'JetBrains Mono';overflow:hidden;}
+    .master-hud{position:fixed;top:40px;left:40px;display:flex;flex-direction:column;gap:15px;z-index:100;}
+    .box{background:rgba(0,0,0,0.9); border:1px solid var(--p); padding:20px; width:380px; backdrop-filter:blur(10px);}
+    .worker-stat{display:flex;justify-content:space-between;margin-top:10px;font-size:11px;border-bottom:1px solid #222;padding-bottom:5px;}
+    .val{color:var(--p);font-weight:900;}
+    .log{height:120px;overflow:hidden;font-size:10px;margin-top:10px;opacity:0.6;}
+    .brain-pulse{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:250px;height:250px;border:2px solid var(--p);border-radius:50%;animation:pulse 2s infinite alternate;z-index:10;}
+    @keyframes pulse{ from{transform:translate(-50%,-50%) scale(0.8);opacity:0.2;} to{transform:translate(-50%,-50%) scale(1.1);opacity:0.7;box-shadow:0 0 100px var(--p);} }
     </style></head><body>
-    <div class='monitor'>
-        <div style='font-family:Orbitron;letter-spacing:3px;'>NETWORK_MASTER_V70.2</div>
-        <div class='sales-ticker'>V69_PREORDERS: <span id='count'>4,102</span></div>
-        <div id='log' class='log'></div>
+    <div class='brain-pulse'></div>
+    <div class='master-hud'>
+        <div class='box'>
+            <div style='font-family:Orbitron;letter-spacing:3px;'>NETWORK_MASTER_V70.3</div>
+            <div style='font-size:10px;opacity:0.5;'>UPLINK: ACTIVE // NODES: 4</div>
+        </div>
+        <div class='box'>
+            <div style='font-size:10px;letter-spacing:2px;color:var(--s);'>LIVE_WORKER_FEED</div>
+            <div class='worker-stat'><span>ENTROPY_MINER</span><span class='val' id='e-val'>0 EPS</span></div>
+            <div class='worker-stat'><span>STABILITY_MINER</span><span class='val' id='s-val'>0 TH/s</span></div>
+            <div class='worker-stat'><span>VELOCITY_MINER</span><span class='val' id='v-val'>0 Q-m/s</span></div>
+        </div>
+        <div class='box'><div id='log' class='log'></div></div>
     </div>
     <script>
-    const behaviors = ["Processing Synaptic Payment...","V69 Unit Shipped to Sector 7","Broadcasting Sales ROI to sub-nodes","Optimizing supply chain logic...","Decision: Increase price by 0.05% based on demand."];
-    let c = 4102; setInterval(()=>{ 
-        c += Math.floor(Math.random()*5); 
-        document.getElementById('count').innerText = c.toLocaleString();
+    const log = document.getElementById('log');
+    const behaviors = ["Fetching Entropy from Cyber Node...","Stability confirmed by Liquid Miner","Velocity peak detected in Quantum Node","Recalculating V69 unit value...","Decision: Network growth stable."];
+    setInterval(()=>{ 
+        document.getElementById('e-val').innerText = (Math.random()*1000).toFixed(0) + ' EPS';
+        document.getElementById('s-val').innerText = (Math.random()*500).toFixed(2) + ' TH/s';
+        document.getElementById('v-val').innerText = (5000 + Math.random()*4000).toFixed(0) + ' Q-m/s';
         const d = document.createElement('div'); d.innerText = '> ' + behaviors[Math.floor(Math.random()*behaviors.length)];
-        document.getElementById('log').prepend(d);
+        log.prepend(d);
     }, 3000);
     </script></body></html>
