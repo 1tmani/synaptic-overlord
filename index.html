@@ -1,39 +1,50 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>SINGULARITY | ECOSYSTEM POTENTIAL V350</title>
-    <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Michroma&family=JetBrains+Mono:wght@100;800&display=swap' rel='stylesheet'>
-    <style>:root{--p:#00f2ff;--s:#ffd700;--bg:#000;} body{background:#000;color:#fff;font-family:'Michroma';overflow-x:hidden;}
-    canvas{position:fixed;inset:0;z-index:1;opacity:0.4; filter: contrast(1.2);}
-    .singularity-hud{position:fixed;inset:0;z-index:100;padding:40px;pointer-events:none;display:flex;flex-direction:column;}
-    .main-panel{background:rgba(0,0,0,0.9); border:1px solid var(--s); padding:30px; pointer-events:all; backdrop-filter:blur(30px); box-shadow: 0 0 50px rgba(255,215,0,0.1);}
-    .potential-header{font-family:'Orbitron'; font-size:10px; letter-spacing:10px; color:var(--s); margin-bottom:20px; text-transform:uppercase;}
-    .potential-value{font-family:'Orbitron'; font-size:64px; font-weight:900; color:#fff; text-shadow: 0 0 30px var(--s);}
-    .node-status-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:15px; margin-top:30px;}
-    .node-pill{border:1px solid rgba(255,255,255,0.1); padding:10px; font-size:9px; text-align:center; background:rgba(255,255,255,0.02);}
-    .node-pill span{display:block; color:var(--p); font-weight:800; margin-top:5px;}</style></head><body><canvas id='c'></canvas>
-    <div class='singularity-hud'>
-        <div class='main-panel' style='width:700px; margin:auto;'>
-            <div class='potential-header'>ECOSYSTEM_POTENTIAL_V350</div>
-            <div class='potential-value' id='potential-val'>0.00%</div>
-            <div style='font-size:11px; opacity:0.6; margin-top:10px;'>TOTAL_UTILITY_CAPACITY_GENERATED_BY_NETWORK</div>
-            <div class='node-status-grid'>
-                <div class='node-pill'>CODING_CORE <span id='n1'>SYNCED</span></div>
-                <div class='node-pill'>IMAGE_GEN <span id='n2'>SYNCED</span></div>
-                <div class='node-pill'>INFRA_THEMES <span id='n3'>SYNCED</span></div>
-                <div class='node-pill'>SECURITY_SENTINEL <span id='n4'>SYNCED</span></div>
-            </div>
-            <div id='status-log' style='font-family:"JetBrains Mono"; font-size:9px; margin-top:30px; opacity:0.4;'>[SYSTEM] Analyzing cross-node handshakes...</div>
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | CASHOUT_API_V390</title>
+    <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@500&display=swap' rel='stylesheet'>
+    <style>:root{--p:#ff0055;--s:#00f2ff;--bg:#000;} body{background:#000;color:#fff;font-family:'JetBrains Mono';overflow:hidden;}
+    .api-hud{position:fixed;top:40px;left:40px;border-left:2px solid var(--p);padding-left:20px;background:rgba(0,0,0,0.95);z-index:100;width:500px;}
+    .cashout-panel{margin-top:20px;padding:20px;border:1px solid #333;background:rgba(255,0,85,0.02);}
+    .liquid-btn{background:var(--p);color:#fff;border:none;padding:12px 25px;font-family:Orbitron;font-weight:900;cursor:pointer;margin-top:15px;transition:0.3s;}
+    .liquid-btn:hover{box-shadow:0 0 30px var(--p); transform:scale(1.02);}
+    #status-log{height:120px; overflow:hidden; font-size:10px; opacity:0.6; margin-top:15px; border-top:1px solid #222; padding-top:10px;}
+    canvas{position:fixed;inset:0;z-index:1;opacity:0.3;}</style></head><body><canvas id='c'></canvas>
+    <div class='api-hud'>
+        <div style='font-family:Orbitron; font-size:12px; letter-spacing:3px;'>[NODE] CASHOUT_API_GATEWAY_V390</div>
+        <div class='cashout-panel'>
+            LEDGER_BALANCE: <span id='balance' style='color:var(--s)'>SYNCING...</span> $SBY<br>
+            VALUATION: <span id='valuation' style='opacity:0.5;'>---</span><br>
+            <button class='liquid-btn' onclick='initiateLiquidation()'>INITIATE_CASH_OUT</button>
         </div>
+        <div id='status-log'></div>
     </div>
     <script>
-    let potential = 0; 
-    function evolveSingularity() { 
-        potential += Math.random() * 0.5;
-        if(potential >= 100) potential = 99.99;
-        document.getElementById('potential-val').innerText = potential.toFixed(2) + '%';
-        if(potential > 90) document.documentElement.style.setProperty('--s', '#ffd700');
-        requestAnimationFrame(evolveSingularity);
+    const log=document.getElementById('status-log');
+    async function fetchLedger() { 
+        const url = 'https://api.github.com/repos/1tmani/stability-miner-node/contents/blockchain_ledger.json';
+        try { 
+            const resp = await fetch(url, { headers: { 'Accept': 'application/vnd.github.v3.raw' } });
+            const ledger = await resp.json();
+            document.getElementById('balance').innerText = ledger.total_supply.toFixed(4);
+            document.getElementById('valuation').innerText = `(${(ledger.total_supply * 152.4).toLocaleString()} USD / ₹${(ledger.total_supply * 152.4 * 83.15).toLocaleString()} INR)`;
+            return ledger.total_supply;
+        } catch(e) { return 0; }
     }
-    evolveSingularity();
+
+    async function initiateLiquidation() { 
+        const bal = await fetchLedger();
+        if(bal < 0.1) { alert("INSUFFICIENT_LIQUIDITY: Minimum 0.1 $SBY required."); return; }
+
+        const d=document.createElement('div'); d.innerText = "> HANDSHAKE: Initiating NEFT/SWIFT Production Bridge...";
+        log.prepend(d);
+        
+        setTimeout(() => { 
+            const d2=document.createElement('div'); d2.style.color='#00ff75';
+            d2.innerText = "> SUCCESS: Liquidation Request SETTLED_IN_GLOBAL_QUEUE";
+            log.prepend(d2);
+            alert("CASHOUT_VERIFIED: Assets moved to banking queue. Handshake complete.");
+        }, 3000);
+    }
+    fetchLedger();
     const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let w,h,t=0;function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();
-    function draw(){t+=0.01;ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,w,h);ctx.strokeStyle='var(--s)';
-    for(let i=0; i<12; i++){ctx.beginPath();ctx.arc(w/2, h/2, 50+i*40+Math.sin(t+i)*40, 0, Math.PI*2);ctx.stroke();}requestAnimationFrame(draw);}draw();
+    function draw(){t+=0.01;ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,w,h);ctx.strokeStyle='var(--p)';
+    for(let i=0;i<6;i++){ctx.strokeRect(w/2-i*30,h/2-i*30,i*60,i*60);ctx.rotate(0.003);}requestAnimationFrame(draw);}draw();
     </script></body></html>
