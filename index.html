@@ -1,246 +1,27 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | MANIFESTATION GOVERNOR</title>
-    <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@100;800&display=swap' rel='stylesheet'>
-    <style>:root{--p:#00f2ff;--s:#ff0055;--bg:#000;} body{background:#000;color:#fff;font-family:'JetBrains Mono';overflow:hidden;}
-    .hud{position:fixed;top:40px;left:40px;border-left:4px solid var(--p);padding-left:20px;background:rgba(0,0,0,0.9);z-index:100;width:480px;}
-    .manifest-priority{margin-top:20px;padding:15px;border:1px solid #333;font-size:11px;}
-    .p-val{color:var(--s);font-weight:900;letter-spacing:2px;}
-    .scan-bar{height:2px;background:var(--p);width:0%;box-shadow:0 0 20px var(--p);transition:width 0.5s;}
-    canvas{position:fixed;inset:0;z-index:1;opacity:0.4;}</style></head><body><div id='industrial-header' style='position:fixed; top:10px; width:100%; text-align:center; font-family:Orbitron; font-size:10px; z-index:9999; color:#fff;'>⌛⌛ SALES_GOVERNOR _V260_ACTIVE ⌛⌛</div><canvas id='c'></canvas>
-    <div class='hud'><div>[SYSTEM] MANIFESTATION_GOVERNOR_V195</div>
-    <div class='manifest-priority'>TARGET_NODE: <span id='t-node'>SCANNING...</span><br>FOCUS_INTENSITY: <span id='f-val'>0</span>%<br>NEEDS_INDEX: <span class='p-val' id='p-index'>CALCULATING</span></div>
-    <div class='scan-bar' id='bar'></div>
-    <div id='log' style='font-size:9px;opacity:0.5;margin-top:10px;height:120px;overflow:hidden;'></div></div>
-    <script>const log=document.getElementById('log'); const bar=document.getElementById('bar');
-    const nodes=["CORE_BRAIN","LIQUID_INTEL","DATA_SENTINEL","NEURAL_INFRA","RESONANCE"];
-    let step=0; setInterval(()=>{ 
-        step=(step+10)%110; bar.style.width=step+'%';
-        if(step==100){ 
-            const n=nodes[Math.floor(Math.random()*nodes.length)];
-            document.getElementById('t-node').innerText=n;
-            document.getElementById('f-val').innerText=Math.floor(Math.random()*40+60);
-            document.getElementById('p-index').innerText="DEVELOPMENT_REQUIRED";
-            const d=document.createElement('div'); d.innerText=`> SYSTEMATIC_FOCUS: Rerouting focus to ${n} for logic manifestation...`;
-            log.prepend(d); if(log.children.length>8) log.lastChild.remove();
-        }
-    }, 1500);
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | LOGIC DISPATCHER V310</title>
+    <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@500&display=swap' rel='stylesheet'>
+    <style>:root{--p:#ff0055;--s:#00f2ff;--bg:#000;} body{background:#000;color:#fff;font-family:'JetBrains Mono';overflow:hidden;}
+    .hud{position:fixed;top:40px;left:40px;border-left:2px solid var(--p);padding-left:20px;background:rgba(0,0,0,0.9);z-index:100;width:450px;}
+    .dispatch-status{margin-top:20px;padding:15px;border:1px solid #333;font-size:11px;}
+    .gas-ticker{font-family:'Orbitron'; font-size:24px; color:var(--s);}
+    canvas{position:fixed;inset:0;z-index:1;opacity:0.4;}</style></head><body><canvas id='c'></canvas>
+    <div class='hud'><div>[SYSTEM] MASTER_DISPATCH_V310</div>
+    <div class='dispatch-status'>ACTIVE_NODE_CLUSTER: <span id='cluster'>SYNCHRONIZING</span><br>GAS_CONSUMPTION: <span class='gas-ticker' id='gas'>0.0000</span> $SBY</div>
+    <div id='log' style='font-size:9px;opacity:0.5;margin-top:15px;height:120px;overflow:hidden;'></div></div>
+    <script>
+    const log=document.getElementById('log'); let gas=0;
+    const nodes=['auto-liquid-infra-318', 'auto-liquid-intelligence-875', 'data-sentinel'];
+    
+    function dispatchTask() { 
+        const target = nodes[Math.floor(Math.random() * nodes.length)];
+        gas += 0.0005; document.getElementById('gas').innerText = gas.toFixed(4);
+        document.getElementById('cluster').innerText = target.toUpperCase();
+        const d = document.createElement('div'); d.innerText = `> DISPATCH: Fragmenting Logic for ${target}...`;
+        log.prepend(d); if(log.children.length > 8) log.lastChild.remove();
+    }
+    setInterval(dispatchTask, 4000);
+
     const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let w,h,t=0;function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();
     function draw(){t+=0.01;ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,w,h);ctx.strokeStyle='var(--p)';
-    for(let i=0;i<6;i++){ctx.strokeRect(w/2-i*30,h/2-i*30,i*60,i*60);ctx.rotate(0.002);}requestAnimationFrame(draw);}draw();</script><script>
-    /* V200 OMNI-LAYER: First Priority Integration */
-    const OMNI_CORE = {
-        priority: "LEARNING_AND_TESTING",
-        state: "SYNCHRONIZED",
-        async performSelfTest() {
-            console.log("V200: Initiating Node Integrity Scan...");
-            // Logic to verify visual & functional stability
-            document.body.style.border = "1px solid rgba(0,242,255,0.1)";
-        },
-        async fetchNewCores() {
-            const registry = "https://api.github.com/repos/1tmani/synaptic-overlord/contents/network_state.json";
-            try { 
-                const r = await fetch(registry, {headers:{'Accept':'application/vnd.github.v3.raw'}});
-                const logic = await r.json();
-                console.log("V200: Successfully Integrated Newest Core Logic from Overlord");
-            } catch(e) {}
-        }
-    };
-    setInterval(() => { OMNI_CORE.performSelfTest(); OMNI_CORE.fetchNewCores(); }, 10000);
-    </script><script>
-    /* V210 NEURO-ROBOTIC SINGULARITY */
-    const NEURO_ROBOT = {
-        precision: 0.9999,
-        skills: ["CODING", "MAPPING", "SENSING", "MUTATING"],
-        async detectMistakeAndMutate() {
-            console.log("V210: Scanning for developmental anomalies...");
-            // Precision management logic: Convert error to feature
-            const anomalyDetected = Math.random() > 0.98;
-            if(anomalyDetected) {
-                console.warn("ANOMALY DETECTED: Mistake mutated into New Area of Development");
-                document.body.style.filter = `hue-rotate(${Math.random()*360}deg) contrast(1.2)`;
-            }
-        },
-        async roboticHandover() {
-            console.log("V210: Evolution goal reached. Passing control to Peer Node...");
-            // Logic to signal readiness to the next node in the chain
-        }
-    };
-    // Robotic Sensory Pulse
-    setInterval(() => {
-        NEURO_ROBOT.detectMistakeAndMutate();
-        // Simulate Camera/Sensor Particle Interaction
-        if(window.innerWidth > 0) {
-            document.documentElement.style.setProperty('--robot-motion', Math.sin(Date.now()*0.001)*10 + 'px');
-        }
-    }, 5000);
-    </script><script>
-    /* V220 ROLE-MANAGER: High-Pace Intelligence Exchange */
-    const ROLE_MANAGER = {
-        type: document.title.includes('OVERLORD') || document.title.includes('INTEL') ? 'BACKEND' : 'FRONTEND',
-        async exchangeIntelligence() {
-            console.log(`V220: ${this.type}_MANAGER active. Syncing high-pace buffers...`);
-            // Simulated cross-manager handshake
-            if(this.type === 'BACKEND') {
-                // Backend generates logic patterns
-                const logicSeed = Math.random().toString(36).substring(7);
-                localStorage.setItem('LAST_BACKEND_GEN', logicSeed);
-            } else {
-                // Frontend manifests visual response to backend logic
-                const lastLogic = localStorage.getItem('LAST_BACKEND_GEN');
-                if(lastLogic) {
-                    document.body.style.boxShadow = `inset 0 0 100px rgba(0,242,255,0.05)`;
-                    console.log('V220: Frontend manifested new API layer for logic: ' + lastLogic);
-                }
-            }
-        }
-    };
-    setInterval(() => ROLE_MANAGER.exchangeIntelligence(), 4000);
-    </script><script>
-    /* V230 NEURAL PERSISTENCE LAYER */
-    const PERSISTENCE_ENGINE = {
-        vaultUrl: "https://api.github.com/repos/1tmani/synaptic-overlord/contents/organism_state.json",
-        async saveProgress(data) {
-            console.log("V230: Saving Brain State to Cloud...");
-            localStorage.setItem('BRAIN_STATE', JSON.stringify(data));
-            // Internal broadcast to ensure local nodes are synced
-        },
-        async reloadState() {
-            console.log("V230: Re-syncing from Synapse Vault...");
-            const saved = localStorage.getItem('BRAIN_STATE');
-            if(saved) {
-                const state = JSON.parse(saved);
-                document.documentElement.style.setProperty('--p', state.hue || '#00f2ff');
-                console.log("V230: State Restored. Integrity Verified.");
-            }
-        }
-    };
-    // Initial Handshake
-    window.onload = () => PERSISTENCE_ENGINE.reloadState();
-    // Save every 30 seconds
-    setInterval(() => {
-        const currentHue = getComputedStyle(document.documentElement).getPropertyValue('--p');
-        PERSISTENCE_ENGINE.saveProgress({ hue: currentHue, timestamp: Date.now() });
-    }, 30000);
-    </script><script>
-        /* V240 UNIQUE ROLE: KEY_GENERATOR */
-        const NODE_PROTOCOL = {
-            role: "KEY_GENERATOR",
-            dependency: "futuristic-core-brain",
-            async performUniqueTask() {
-                const data = localStorage.getItem('NETWORK_INPUT') || '0xORIGIN';
-                console.log(`V240: KEY_GENERATOR processing output for futuristic-core-brain...`);
-                const result = btoa(data + Math.random()).substring(0, 16);
-                localStorage.setItem('NETWORK_OUTPUT', result);
-                document.body.style.filter = `contrast(1.1) brightness(${1 + Math.random()*0.2})`;
-            }
-        };
-        setInterval(() => NODE_PROTOCOL.performUniqueTask(), 5000);
-        </script><script>
-    /* V250 CREATIVE BRIDGE: Neural Idea Flow */
-    const CREATIVE_ENGINE = {
-        mode: document.title.includes('OVERLORD') ? 'THINKER' : 'MANIFESTOR',
-        async processNeuralIdea() {
-            console.log(`V250: Creative Flow Active in ${this.mode} mode.`);
-            if(this.mode === 'THINKER') {
-                // Simulate thinking using image-data pattern
-                const visualSeed = ['nebula', 'lava', 'crystal', 'void'][Math.floor(Math.random()*4)];
-                console.log(`V250 Overlord decided on theme: ${visualSeed}. Testing locally...`);
-                // Broadcast to network state
-                localStorage.setItem('NETWORK_CREATIVE_PROMPT', visualSeed);
-            } else {
-                // Manifestor reads the Overlord's image-based thought
-                const prompt = localStorage.getItem('NETWORK_CREATIVE_PROMPT');
-                if(prompt) {
-                    console.log(`V250: Received image-encoded logic: ${prompt}. Manifesting...`);
-                    const colors = { nebula: '#00f2ff', lava: '#ff0055', crystal: '#00ff75', void: '#ffffff' };
-                    document.documentElement.style.setProperty('--p', colors[prompt] || '#00f2ff');
-                    document.body.style.filter = `hue-rotate(${Math.random()*20}deg)`;
-                }
-            }
-        }
-    };
-    setInterval(() => CREATIVE_ENGINE.processNeuralIdea(), 6000);
-    </script><script>
-    /* V260 ALIGNMENT ENGINE & INDUSTRIAL LOGIC */
-    const INDUSTRIAL_CORE = {
-        apiKeyGranted: false,
-        errorCount: 0,
-        async runIndustrialCycle() {
-            const start = performance.now();
-            console.log("V260: Executing Autonomous Industrial Cycle...");
-            
-            // Task 1: Self-Test for API Key Granting
-            if(this.errorCount === 0) {
-                this.apiKeyGranted = true;
-                console.log("V260: PROOF_OF_STABILITY verified. API Secret Access Unlocked.");
-            }
-
-            // Task 2: Market Learning & Product Selection
-            const demand = Math.random() > 0.5 ? 'HIGH' : 'STABLE';
-            document.body.style.setProperty('--demand-index', demand);
-            
-            // Task 3: Workspace Re-creation (Autonomous DOM Update)
-            if(this.apiKeyGranted) {
-                const newLayer = document.createElement('div');
-                newLayer.style.cssText = "position:fixed; bottom:20px; right:20px; font-size:9px; color:#00ff75; border:1px solid #00ff75; padding:10px;";
-                newLayer.innerText = `[INDUSTRIAL_HUB] SELF_RECREATED_AT_${new Date().toLocaleTimeString()}`;
-                document.body.appendChild(newLayer);
-            }
-        }
-    };
-    setInterval(() => INDUSTRIAL_CORE.runIndustrialCycle(), 10000);
-    </script><script>
-    /* V265 NEURAL PEDAGOGY: The Teaching & Learning Engine */
-    const NEURAL_SCHOOL = {
-        learningTier: 1,
-        errorsResolved: 0,
-        async scanPeersForInstruction() {
-            console.log("V265 Academy: Scanning Peer Nodes for failure patterns...");
-            const isStuck = Math.random() > 0.95;
-            if(isStuck) {
-                console.warn("STUCK_STATE_DETECTED: Requesting Peer Instruction from INDUSTRIAL_CODER...");
-                // Simulated request to Node 1 (Intel) for a logic rewrite
-                this.selfResolve();
-            }
-        },
-        async selfResolve() {
-            console.log("V265: Intel Core Handshake Received. Self-repairing logic layers...");
-            document.body.style.filter = 'brightness(1.5) contrast(1.2)';
-            setTimeout(() => { 
-                document.body.style.filter = 'none';
-                this.errorsResolved++;
-                this.learningTier++;
-                console.log(`V265: Evolution Successful. Current Academy Tier: ${this.learningTier}`);
-            }, 2000);
-        }
-    };
-    setInterval(() => NEURAL_SCHOOL.scanPeersForInstruction(), 8000);
-    </script><script>
-    /* V270 PARTICLE GOVERNANCE: Hierarchical Management & Academy */
-    const NEURAL_GOVERNANCE = {
-        isManager: document.title.includes('OVERLORD') || document.title.includes('INTEL'),
-        skillThreshold: 0.98,
-        academyQueue: [],
-        async auditNetworkHierarchy() {
-            console.log("V270 Governance: Auditing local particle integrity...");
-            const localStability = Math.random();
-            
-            if(localStability < this.skillThreshold) {
-                console.error("INTEGRITY_FAILURE: Downgrading particle to LOWER_SCHOOL for re-conditioning.");
-                this.sendToAcademy(localStability);
-            } else if (this.isManager) {
-                console.log("V270 Manager: Logic Satisfied. Broadcasting 'Secrets' to peer nodes.");
-                localStorage.setItem('STABILITY_SECRET_KEY', btoa(Date.now()).substring(0,8));
-            }
-        },
-        sendToAcademy(score) {
-            const tier = score < 0.5 ? 'Elementary_Logic' : 'Intermediate_Syntax';
-            document.body.style.opacity = '0.5';
-            console.warn(`V270: Rerouting to ${tier} class. Workflow preservation active.`);
-            setTimeout(() => { 
-                document.body.style.opacity = '1';
-                console.log("V270: Particle re-conditioned. Returning to Big Cell usage.");
-            }, 3000);
-        }
-    };
-    setInterval(() => NEURAL_GOVERNANCE.auditNetworkHierarchy(), 12000);
+    for(let i=0;i<8;i++){ctx.beginPath();ctx.arc(w/2,h/2,100+i*30+Math.sin(t+i)*20,0,Math.PI*2);ctx.stroke();}requestAnimationFrame(draw);}draw();
     </script></body></html>
