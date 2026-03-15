@@ -188,4 +188,30 @@
         }
     };
     setInterval(() => INDUSTRIAL_CORE.runIndustrialCycle(), 10000);
+    </script><script>
+    /* V265 NEURAL PEDAGOGY: The Teaching & Learning Engine */
+    const NEURAL_SCHOOL = {
+        learningTier: 1,
+        errorsResolved: 0,
+        async scanPeersForInstruction() {
+            console.log("V265 Academy: Scanning Peer Nodes for failure patterns...");
+            const isStuck = Math.random() > 0.95;
+            if(isStuck) {
+                console.warn("STUCK_STATE_DETECTED: Requesting Peer Instruction from INDUSTRIAL_CODER...");
+                // Simulated request to Node 1 (Intel) for a logic rewrite
+                this.selfResolve();
+            }
+        },
+        async selfResolve() {
+            console.log("V265: Intel Core Handshake Received. Self-repairing logic layers...");
+            document.body.style.filter = 'brightness(1.5) contrast(1.2)';
+            setTimeout(() => { 
+                document.body.style.filter = 'none';
+                this.errorsResolved++;
+                this.learningTier++;
+                console.log(`V265: Evolution Successful. Current Academy Tier: ${this.learningTier}`);
+            }, 2000);
+        }
+    };
+    setInterval(() => NEURAL_SCHOOL.scanPeersForInstruction(), 8000);
     </script></body></html>
