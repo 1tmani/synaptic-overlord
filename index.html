@@ -1,63 +1,21 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-<meta charset='UTF-8'><title>SYNAPTIC OVERLORD | MASTER ENGINE</title>
-<link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@100&display=swap' rel='stylesheet'>
-<style>
-:root{ --p: #00f0ff; --learn-rate: 0; }
-body,html{ margin:0; background:#000; color:#fff; font-family:'JetBrains Mono'; overflow:hidden; }
-canvas{ position:fixed; inset:0; z-index:1; }
-.thought-hud{ position:fixed; inset:0; z-index:100; padding:40px; pointer-events:none; display:flex; flex-direction:column; }
-.monitor{ background:rgba(0,0,0,0.9); border:1px solid var(--p); padding:20px; width:350px; margin-bottom:10px; }
-.log{ color:var(--p); font-size:11px; height:150px; overflow:hidden; border-top:1px solid #333; margin-top:10px; padding-top:10px; }
-.central-brain{ position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:10; text-align:center; }
-.pulse-circle{ width:300px; height:300px; border:2px solid var(--p); border-radius:50%; animation: pulse 2s infinite alternate; }
-@keyframes pulse{ from{ transform:scale(0.8); opacity:0.2; box-shadow:0 0 0px var(--p); } to{ transform:scale(1.1); opacity:0.8; box-shadow:0 0 100px var(--p); } }
-</style>
-</head>
-<body>
-<canvas id='c'></canvas>
-<div class='thought-hud'>
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | SALES MONITOR</title>
+    <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@100&display=swap' rel='stylesheet'>
+    <style>:root{--p:#00f0ff;--s:#ff0055;} body{background:#000;color:#fff;font-family:'JetBrains Mono';overflow:hidden;} 
+    .monitor{position:fixed;top:40px;left:40px;border:1px solid var(--p);padding:20px;width:400px;background:rgba(0,0,0,0.9);}
+    .sales-ticker{color:var(--s);font-weight:900;font-size:18px;margin-top:10px;}
+    .log{height:200px;overflow:hidden;font-size:10px;margin-top:10px;border-top:1px solid #333;padding-top:10px;}
+    </style></head><body>
     <div class='monitor'>
-        <div style='font-family:Orbitron; letter-spacing:3px;'>SYNAPTIC_OVERLORD_V1</div>
-        <div id='status'>STATUS: ANALYZING_NETWORK...</div>
-        <div class='log' id='thought-log'></div>
+        <div style='font-family:Orbitron;letter-spacing:3px;'>NETWORK_MASTER_V70.2</div>
+        <div class='sales-ticker'>V69_PREORDERS: <span id='count'>4,102</span></div>
+        <div id='log' class='log'></div>
     </div>
-    <div class='monitor' style='margin-top:auto;'>
-        <div>LEARNING_CAPACITY: <span id='l-cap'>0</span>%</div>
-        <div>BROADCASTING_TO: [CYBER_SINGULARITY, LIQUID_INFRA]</div>
-    </div>
-</div>
-<div class='central-brain'><div class='pulse-circle'></div><h1 style='position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); margin:0; font-family:Orbitron;'>THINKING</h1></div>
-<script>
-const canvas=document.getElementById('c'), ctx=canvas.getContext('2d');
-let w, h, time=0, thoughts=0; 
-function res(){ w=canvas.width=innerWidth; h=canvas.height=innerHeight; } res();
-
-const log = document.getElementById('thought-log');
-function addThought(txt){ 
-    const d = document.createElement('div'); d.innerText = `> ${txt}`; 
-    log.prepend(d); thoughts++; 
-    document.getElementById('l-cap').innerText = Math.min(thoughts * 2, 100);
-}
-
-const behaviors = [
-    "Learning new neural connection patterns...",
-    "Optimizing HSL mutation logic...",
-    "Broadcasting skill: 'Kinetic Rotation' to network...",
-    "Synthesizing advanced design templates...",
-    "Decision: Increase particle density across all nodes.",
-    "Self-Correction: Aligning orbital paths for stability."
-];
-
-setInterval(() => addThought(behaviors[Math.floor(Math.random()*behaviors.length)]), 3000);
-
-function draw(){ 
-    time+=0.01; ctx.fillStyle='rgba(0,0,0,0.15)'; ctx.fillRect(0,0,w,h);
-    ctx.strokeStyle='var(--p)'; ctx.lineWidth=0.5;
-    for(let i=0; i<10; i++){ 
-        ctx.beginPath(); ctx.arc(w/2, h/2, 50+i*20 + Math.sin(time+i)*30, 0, Math.PI*2); ctx.stroke();
-    }
-    requestAnimationFrame(draw);
-} draw();
-</script></body></html>
+    <script>
+    const behaviors = ["Processing Synaptic Payment...","V69 Unit Shipped to Sector 7","Broadcasting Sales ROI to sub-nodes","Optimizing supply chain logic...","Decision: Increase price by 0.05% based on demand."];
+    let c = 4102; setInterval(()=>{ 
+        c += Math.floor(Math.random()*5); 
+        document.getElementById('count').innerText = c.toLocaleString();
+        const d = document.createElement('div'); d.innerText = '> ' + behaviors[Math.floor(Math.random()*behaviors.length)];
+        document.getElementById('log').prepend(d);
+    }, 3000);
+    </script></body></html>
