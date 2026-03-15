@@ -1,7 +1,6 @@
 {
-    "global_theme": "RED_SHIFT",
-    "neural_load": 88.4,
+    "global_hue": 280,
+    "energy_level": "HIGH",
     "active_nodes": 7,
-    "learning_tier": "UNIQUE_PHASE_SHIFT",
-    "last_sync_utc": "Sun Mar 15 01:18:34 2026"
+    "timestamp": "Sun Mar 15 02:19:56 2026"
 }
