@@ -1,47 +1,54 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | MASTER COMMAND</title>
-    <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@100&display=swap' rel='stylesheet'>
-    <style>:root{--p:#00f0ff;--s:#ff0055;--sec:#00ff75;} body{background:#000;color:#fff;font-family:'JetBrains Mono';overflow:hidden;}
-    .master-hud{position:fixed;top:40px;left:40px;display:flex;flex-direction:column;gap:15px;z-index:100;}
-    .box{background:rgba(0,0,0,0.9); border:1px solid var(--p); padding:20px; width:400px; backdrop-filter:blur(10px);}
-    .worker-stat{display:flex;justify-content:space-between;margin-top:10px;font-size:11px;border-bottom:1px solid #222;padding-bottom:5px;}
-    .val{color:var(--p);font-weight:900;}
-    .sec-val{color:var(--sec);font-weight:900;}
-    .log{height:100px;overflow:hidden;font-size:10px;margin-top:10px;opacity:0.6;}
-    .brain-pulse{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:250px;height:250px;border:2px solid var(--p);border-radius:50%;animation:pulse 2s infinite alternate;z-index:10;}
-    @keyframes pulse{ from{transform:translate(-50%,-50%) scale(0.8);opacity:0.2;} to{transform:translate(-50%,-50%) scale(1.1);opacity:0.7;box-shadow:0 0 100px var(--p);} }
-    </style></head><body>
-    <div class='brain-pulse'></div>
-    <div class='master-hud'>
-        <div class='box'>
-            <div style='font-family:Orbitron;letter-spacing:3px;'>MASTER_COMMAND_V70.4</div>
-            <div style='font-size:10px;opacity:0.5;'>UPLINK: SECURE // CONNECTED_NODES: 6</div>
-        </div>
-        <div class='box' style='border-color:var(--sec);'>
-            <div style='font-size:10px;letter-spacing:2px;color:var(--sec);'>SECURITY_SENTINEL_FEED</div>
-            <div class='worker-stat'><span>THREAT_LEVEL</span><span class='sec-val' id='t-lvl'>MINIMAL</span></div>
-            <div class='worker-stat'><span>PACKET_FILTER</span><span class='sec-val'>ACTIVE</span></div>
-            <div class='worker-stat'><span>UPTIME</span><span class='sec-val' id='u-time'>0 ms</span></div>
-        </div>
-        <div class='box'>
-            <div style='font-size:10px;letter-spacing:2px;color:var(--s);'>INDUSTRIAL_TELEMETRY</div>
-            <div class='worker-stat'><span>ENTROPY</span><span class='val' id='e-val'>0 EPS</span></div>
-            <div class='worker-stat'><span>STABILITY</span><span class='val' id='s-val'>0 TH/s</span></div>
-            <div class='worker-stat'><span>VELOCITY</span><span class='val' id='v-val'>0 Q-m/s</span></div>
-        </div>
-        <div class='box'><div id='log' class='log'></div></div>
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'><title>HOLOGRAPHIC OS | MASTER COMMAND</title>
+<link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Michroma&family=JetBrains+Mono:wght@100;800&display=swap' rel='stylesheet'>
+<style>
+:root{--p:#00f2ff;--s:#7000ff;--bg:#000;}
+body,html{ margin:0; background:#000; color:#fff; font-family:'Michroma'; overflow:hidden; }
+canvas{ position:fixed; inset:0; z-index:1; opacity:0.4; }
+.os-interface{ position:fixed; inset:0; z-index:100; padding:40px; display:flex; flex-direction:column; pointer-events:none; }
+.os-header{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--p); padding-bottom:20px; }
+.os-title{ font-family:'Orbitron'; font-size:18px; letter-spacing:8px; color:var(--p); text-shadow:0 0 15px var(--p); }
+.grid-container{ display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; margin-top:40px; pointer-events:all; }
+.node-card{ background:rgba(255,255,255,0.03); border:1px solid rgba(0,242,255,0.1); padding:20px; backdrop-filter:blur(15px); transition:0.4s; }
+.node-card:hover{ border-color:var(--p); box-shadow:0 0 30px rgba(0,242,255,0.1); transform:translateY(-5px); }
+.node-name{ font-family:'Orbitron'; font-size:10px; letter-spacing:3px; margin-bottom:10px; color:var(--p); }
+.node-stat{ font-family:'JetBrains Mono'; font-size:9px; opacity:0.6; margin-bottom:5px; }
+.status-tag{ display:inline-block; padding:2px 8px; border-radius:2px; font-size:8px; font-weight:800; background:var(--p); color:#000; }
+</style>
+</head>
+<body>
+<canvas id='c'></canvas>
+<div class='os-interface'>
+    <div class='os-header'>
+        <div class='os-title'>HOLOGRAPHIC_OS_v77.0.1</div>
+        <div style='font-size:10px; letter-spacing:2px;'>UPLINK: SYNCHRONIZED</div>
     </div>
-    <script>
-    const log = document.getElementById('log');
-    const behaviors = ["Syncing Security Logs from Sentinel Node...","Scanning Quantum Packets for Glitch Anomalies","Industrial ROI: Price logic stable.","Broadcasting Defense skill to network...","Sentinel confirms: Node integrity 100%."];
-    let uptime = 0; 
-    setInterval(()=>{ 
-        uptime += 3000; 
-        document.getElementById('u-time').innerText = uptime + ' ms';
-        document.getElementById('e-val').innerText = (Math.random()*1000).toFixed(0) + ' EPS';
-        document.getElementById('s-val').innerText = (Math.random()*500).toFixed(2) + ' TH/s';
-        document.getElementById('v-val').innerText = (5000 + Math.random()*4000).toFixed(0) + ' Q-m/s';
-        document.getElementById('t-lvl').innerText = Math.random() > 0.95 ? 'CAUTION' : 'MINIMAL';
-        const d = document.createElement('div'); d.innerText = '> ' + behaviors[Math.floor(Math.random()*behaviors.length)];
-        log.prepend(d);
-    }, 3000);
-    </script></body></html>
+    <div class='grid-container' id='node-grid'>
+        <!-- Nodes will be injected here -->
+    </div>
+</div>
+<script>
+const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');
+let w,h,t=0; function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();
+const nodes = [
+    {name: 'LIQUID_INFRA_V75', role: 'THEME_CREATOR', status: 'ACTIVE'},
+    {name: 'LIQUID_INTEL_V73', role: 'CODING_ENGINE', status: 'LEARNING'},
+    {name: 'SEED_QUANTUM_PULSE', role: 'ORGANISM_SEED', status: 'BROADCASTING'}
+];
+const grid = document.getElementById('node-grid');
+nodes.forEach(n => {
+    const div = document.createElement('div');
+    div.className = 'node-card';
+    div.innerHTML = `<div class="node-name">${n.name}</div><div class="node-stat">ROLE: ${n.role}</div><div class="node-stat">UPTIME: ${Math.floor(Math.random()*9999)}ms</div><div class="status-tag">${n.status}</div>`;
+    grid.appendChild(div);
+});
+function draw(){
+    t+=0.01; ctx.fillStyle='rgba(0,0,0,0.1)'; ctx.fillRect(0,0,w,h);
+    ctx.strokeStyle='rgba(0,242,255,0.1)'; ctx.lineWidth=0.5;
+    for(let i=0;i<w;i+=100){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,h);ctx.stroke();}
+    for(let i=0;i<h;i+=100){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(w,i);ctx.stroke();}
+    requestAnimationFrame(draw);
+}draw();
+</script></body></html>
