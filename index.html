@@ -1,27 +1,49 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | LOGIC DISPATCHER V310</title>
-    <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@500&display=swap' rel='stylesheet'>
-    <style>:root{--p:#ff0055;--s:#00f2ff;--bg:#000;} body{background:#000;color:#fff;font-family:'JetBrains Mono';overflow:hidden;}
-    .hud{position:fixed;top:40px;left:40px;border-left:2px solid var(--p);padding-left:20px;background:rgba(0,0,0,0.9);z-index:100;width:450px;}
-    .dispatch-status{margin-top:20px;padding:15px;border:1px solid #333;font-size:11px;}
-    .gas-ticker{font-family:'Orbitron'; font-size:24px; color:var(--s);}
-    canvas{position:fixed;inset:0;z-index:1;opacity:0.4;}</style></head><body><canvas id='c'></canvas>
-    <div class='hud'><div>[SYSTEM] MASTER_DISPATCH_V310</div>
-    <div class='dispatch-status'>ACTIVE_NODE_CLUSTER: <span id='cluster'>SYNCHRONIZING</span><br>GAS_CONSUMPTION: <span class='gas-ticker' id='gas'>0.0000</span> $SBY</div>
-    <div id='log' style='font-size:9px;opacity:0.5;margin-top:15px;height:120px;overflow:hidden;'></div></div>
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>UTILITY | REAL-WORLD SIMULATION V320</title>
+    <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Michroma&family=JetBrains+Mono:wght@100;800&display=swap' rel='stylesheet'>
+    <style>:root{--p:#00f2ff;--s:#ffb800;--bg:#000;} body{background:#000;color:#fff;font-family:'Michroma';overflow-x:hidden;}
+    canvas{position:fixed;inset:0;z-index:1;opacity:0.3;}
+    .hud-v320{position:fixed;inset:0;z-index:100;padding:40px;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between;}
+    .panel{background:rgba(0,0,0,0.95); border:1px solid var(--p); padding:25px; pointer-events:all; backdrop-filter:blur(20px);}
+    .task-ticker{font-family:'Orbitron'; font-size:24px; color:var(--s); letter-spacing:5px; margin-bottom:10px;}
+    .progress-track{width:100%; height:2px; background:#222; margin-top:15px; position:relative; overflow:hidden;}
+    .progress-fill{position:absolute; height:100%; background:var(--p); width:0%; transition: width 0.5s linear; box-shadow: 0 0 20px var(--p);}
+    .utility-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-top:30px;}
+    .metric-card{border:1px solid rgba(255,255,255,0.1); padding:15px; text-align:center;}
+    .metric-card h3{font-family:'Orbitron'; font-size:10px; opacity:0.5;}</style></head><body><canvas id='c'></canvas>
+    <div class='hud-v320'>
+        <div class='panel' style='width:550px;'>
+            <div style='font-size:9px; letter-spacing:5px; opacity:0.5; margin-bottom:10px;'>NETWORK_UTILITY_SIMULATION_V320</div>
+            <div class='task-ticker' id='task-display'>INITIALIZING_SIMULATION...</div>
+            <div class='progress-track'><div class='progress-fill' id='bar'></div></div>
+            <div class='utility-grid'>
+                <div class='metric-card'><h3>GAS_EFFICIENCY</h3><div id='eff'>99.9%</div></div>
+                <div class='metric-card'><h3>MARKET_READY</h3><div id='mkt'>VERIFIED</div></div>
+                <div class='metric-card'><h3>NODES_ACTIVE</h3><div>06</div></div>
+            </div>
+        </div>
+        <div class='panel' style='align-self:flex-end; width:400px;'>
+            <div style='font-size:10px; color:var(--p);'>LIVE_BLOCKCHAIN_SOLUTIONS</div>
+            <div id='solution-log' style='font-family:"JetBrains Mono"; font-size:10px; height:150px; overflow:hidden; margin-top:10px; opacity:0.7;'></div>
+        </div>
+    </div>
     <script>
-    const log=document.getElementById('log'); let gas=0;
-    const nodes=['auto-liquid-infra-318', 'auto-liquid-intelligence-875', 'data-sentinel'];
-    
-    function dispatchTask() { 
-        const target = nodes[Math.floor(Math.random() * nodes.length)];
-        gas += 0.0005; document.getElementById('gas').innerText = gas.toFixed(4);
-        document.getElementById('cluster').innerText = target.toUpperCase();
-        const d = document.createElement('div'); d.innerText = `> DISPATCH: Fragmenting Logic for ${target}...`;
-        log.prepend(d); if(log.children.length > 8) log.lastChild.remove();
+    const tasks = ["SECURITY_AUDIT_0X-A9", "DATA_MESH_ORGANIZATION", "ENCRYPTION_VAL_ALPHA", "NEURAL_ROUTE_OPTIMIZATION", "QUANTUM_PERSISTENCE_TEST"];
+    const log = document.getElementById('solution-log'); const bar = document.getElementById('bar');
+    let prog = 0; 
+    function runSimulation() { 
+        prog += Math.random() * 8;
+        if(prog >= 100) { 
+            prog = 0; 
+            const taskItem = tasks[Math.floor(Math.random()*tasks.length)];
+            document.getElementById('task-display').innerText = taskItem;
+            const d = document.createElement('div'); d.innerText = `> SOLUTION_COMMITTED: ${taskItem} | NETWORK_GAIN: +0.0042 $SBY`;
+            log.prepend(d); if(log.children.length > 8) log.lastChild.remove();
+        }
+        bar.style.width = prog + '%';
+        requestAnimationFrame(runSimulation);
     }
-    setInterval(dispatchTask, 4000);
-
+    runSimulation();
     const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let w,h,t=0;function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();
     function draw(){t+=0.01;ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,w,h);ctx.strokeStyle='var(--p)';
-    for(let i=0;i<8;i++){ctx.beginPath();ctx.arc(w/2,h/2,100+i*30+Math.sin(t+i)*20,0,Math.PI*2);ctx.stroke();}requestAnimationFrame(draw);}draw();
+    for(let i=0;i<6;i++){ctx.beginPath();ctx.arc(w/2,h/2,100+i*40+Math.sin(t+i)*30,0,Math.PI*2);ctx.stroke();}requestAnimationFrame(draw);}draw();
     </script></body></html>
