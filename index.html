@@ -1,11 +1,28 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | V190 UNIQUE</title>
-        <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap' rel='stylesheet'>
-        <style>:root{--p:hsl(180,100%,50%);--bg:#000;} body{background:#000;color:#fff;font-family:'Orbitron';overflow:hidden;}
-        .hud{position:fixed;top:40px;left:40px;border-left:2px solid var(--p);padding-left:20px;z-index:100;background:rgba(0,0,0,0.85);font-size:10px;}
-        canvas{position:fixed;inset:0;z-index:1;filter:contrast(1.5) brightness(1.1);}</style></head><body>
-        <div class='hud'>NODE: OVERLORD_V190<br>THEME: CIRCULAR_DYNAMICS<br>STABILITY: PEAK_OPTIMIZED</div>
-        <canvas id='c'></canvas><script>
-        const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let w,h,t=0;function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();
-        function draw(){t+=0.02;ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,w,h);ctx.strokeStyle='var(--p)';
-        for(let i=0;i<12;i++){ctx.beginPath();let r=100+i*30+Math.sin(t+i)*40;ctx.arc(w/2,h/2,r,0,Math.PI*2);ctx.stroke();} requestAnimationFrame(draw);}draw();
-        </script></body></html>
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | MANIFESTATION GOVERNOR</title>
+    <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@100;800&display=swap' rel='stylesheet'>
+    <style>:root{--p:#00f2ff;--s:#ff0055;--bg:#000;} body{background:#000;color:#fff;font-family:'JetBrains Mono';overflow:hidden;}
+    .hud{position:fixed;top:40px;left:40px;border-left:4px solid var(--p);padding-left:20px;background:rgba(0,0,0,0.9);z-index:100;width:480px;}
+    .manifest-priority{margin-top:20px;padding:15px;border:1px solid #333;font-size:11px;}
+    .p-val{color:var(--s);font-weight:900;letter-spacing:2px;}
+    .scan-bar{height:2px;background:var(--p);width:0%;box-shadow:0 0 20px var(--p);transition:width 0.5s;}
+    canvas{position:fixed;inset:0;z-index:1;opacity:0.4;}</style></head><body><canvas id='c'></canvas>
+    <div class='hud'><div>[SYSTEM] MANIFESTATION_GOVERNOR_V195</div>
+    <div class='manifest-priority'>TARGET_NODE: <span id='t-node'>SCANNING...</span><br>FOCUS_INTENSITY: <span id='f-val'>0</span>%<br>NEEDS_INDEX: <span class='p-val' id='p-index'>CALCULATING</span></div>
+    <div class='scan-bar' id='bar'></div>
+    <div id='log' style='font-size:9px;opacity:0.5;margin-top:10px;height:120px;overflow:hidden;'></div></div>
+    <script>const log=document.getElementById('log'); const bar=document.getElementById('bar');
+    const nodes=["CORE_BRAIN","LIQUID_INTEL","DATA_SENTINEL","NEURAL_INFRA","RESONANCE"];
+    let step=0; setInterval(()=>{ 
+        step=(step+10)%110; bar.style.width=step+'%';
+        if(step==100){ 
+            const n=nodes[Math.floor(Math.random()*nodes.length)];
+            document.getElementById('t-node').innerText=n;
+            document.getElementById('f-val').innerText=Math.floor(Math.random()*40+60);
+            document.getElementById('p-index').innerText="DEVELOPMENT_REQUIRED";
+            const d=document.createElement('div'); d.innerText=`> SYSTEMATIC_FOCUS: Rerouting focus to ${n} for logic manifestation...`;
+            log.prepend(d); if(log.children.length>8) log.lastChild.remove();
+        }
+    }, 1500);
+    const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let w,h,t=0;function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();
+    function draw(){t+=0.01;ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,w,h);ctx.strokeStyle='var(--p)';
+    for(let i=0;i<6;i++){ctx.strokeRect(w/2-i*30,h/2-i*30,i*60,i*60);ctx.rotate(0.002);}requestAnimationFrame(draw);}draw();</script></body></html>
