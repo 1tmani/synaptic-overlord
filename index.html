@@ -1,58 +1,54 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-<meta charset='UTF-8'><title>OVERLORD | SILENT LUXURY</title>
-<link href='https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Michroma&display=swap' rel='stylesheet'>
+<meta charset='UTF-8'><title>HOLOGRAPHIC OS | MASTER COMMAND</title>
+<link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Michroma&family=JetBrains+Mono:wght@100;800&display=swap' rel='stylesheet'>
 <style>
-:root{ --p:#fff; --bg:#050505; }
-body,html{ margin:0; background:var(--bg); color:#fff; font-family:'Michroma'; overflow-x:hidden; scroll-behavior:smooth; }
-.luxury-grid{ position:fixed; inset:0; background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 80px 80px; z-index:0; }
-
-section{ height:100vh; width:100vw; position:relative; z-index:10; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:100px; box-sizing:border-box; }
-.hero-title{ font-family:'Syncopate'; font-weight:700; font-size:clamp(2rem, 10vw, 6rem); letter-spacing:30px; text-transform:uppercase; text-align:center; line-height:1.5; opacity:0.9; }
-.reveal-block{ width:1px; height:0%; background:#fff; transition:2s cubic-bezier(0.19, 1, 0.22, 1); margin:40px 0; }
-.active .reveal-block{ height:150px; }
-
-.content-lane{ width:100%; display:flex; justify-content:space-between; max-width:1400px; margin-top:50px; }
-.intel-stat{ font-family:'Syncopate'; font-size:10px; letter-spacing:5px; opacity:0.4; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; }
-
-.nav-minimal{ position:fixed; bottom:50px; left:50%; transform:translateX(-50%); z-index:1000; display:flex; gap:40px; }
-.nav-btn{ background:transparent; border:none; color:#fff; font-family:Syncopate; font-size:9px; letter-spacing:3px; cursor:pointer; opacity:0.3; transition:0.5s; }
-.nav-btn:hover{ opacity:1; }
+:root{--p:#00f2ff;--s:#7000ff;--bg:#000;}
+body,html{ margin:0; background:#000; color:#fff; font-family:'Michroma'; overflow:hidden; }
+canvas{ position:fixed; inset:0; z-index:1; opacity:0.4; }
+.os-interface{ position:fixed; inset:0; z-index:100; padding:40px; display:flex; flex-direction:column; pointer-events:none; }
+.os-header{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--p); padding-bottom:20px; }
+.os-title{ font-family:'Orbitron'; font-size:18px; letter-spacing:8px; color:var(--p); text-shadow:0 0 15px var(--p); }
+.grid-container{ display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; margin-top:40px; pointer-events:all; }
+.node-card{ background:rgba(255,255,255,0.03); border:1px solid rgba(0,242,255,0.1); padding:20px; backdrop-filter:blur(15px); transition:0.4s; }
+.node-card:hover{ border-color:var(--p); box-shadow:0 0 30px rgba(0,242,255,0.1); transform:translateY(-5px); }
+.node-name{ font-family:'Orbitron'; font-size:10px; letter-spacing:3px; margin-bottom:10px; color:var(--p); }
+.node-stat{ font-family:'JetBrains Mono'; font-size:9px; opacity:0.6; margin-bottom:5px; }
+.status-tag{ display:inline-block; padding:2px 8px; border-radius:2px; font-size:8px; font-weight:800; background:var(--p); color:#000; }
 </style>
 </head>
 <body>
-<div class='luxury-grid'></div>
-<div class='flagship-container'>
-    <section class='active'>
-        <h1 class='hero-title'>SILENT<br>INTELLIGENCE</h1>
-        <div class='reveal-block'></div>
-        <div class='intel-stat'>SYNAPTIC_OVERLORD_V100_FLAGSHIP</div>
-    </section>
-    <section>
-        <div class='content-lane'>
-            <div style='width:400px;'>
-                <h3 style='font-family:Syncopate; letter-spacing:5px;'>MINIMAL_FORM</h3>
-                <p style='font-size:12px; opacity:0.5; line-height:2.5;'>The absolute reduction of visual noise. Focusing exclusively on the core logic fragments. High-tier neural resonance achieved through breathing geometry.</p>
-            </div>
-            <div style='width:400px; text-align:right;'>
-                <h3 style='font-family:Syncopate; letter-spacing:5px;'>LUXURY_SYNC</h3>
-                <p style='font-size:12px; opacity:0.5; line-height:2.5;'>A world-class oversight layer managing 10 decentralized ecosystems with zero-latency precision.</p>
-            </div>
-        </div>
-    </section>
+<canvas id='c'></canvas>
+<div class='os-interface'>
+    <div class='os-header'>
+        <div class='os-title'>HOLOGRAPHIC_OS_v77.0.1</div>
+        <div style='font-size:10px; letter-spacing:2px;'>UPLINK: SYNCHRONIZED</div>
+    </div>
+    <div class='grid-container' id='node-grid'>
+        <!-- Nodes will be injected here -->
+    </div>
 </div>
-<nav class='nav-minimal'>
-    <button class='nav-btn'>OVERVIEW</button>
-    <button class='nav-btn'>NODES</button>
-    <button class='nav-btn'>ARCHITECTURE</button>
-</nav>
 <script>
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(s => {
-        const rect = s.getBoundingClientRect();
-        if(rect.top < window.innerHeight/2 && rect.bottom > window.innerHeight/2) s.classList.add('active');
-    });
+const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');
+let w,h,t=0; function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();
+const nodes = [
+    {name: 'LIQUID_INFRA_V75', role: 'THEME_CREATOR', status: 'ACTIVE'},
+    {name: 'LIQUID_INTEL_V73', role: 'CODING_ENGINE', status: 'LEARNING'},
+    {name: 'SEED_QUANTUM_PULSE', role: 'ORGANISM_SEED', status: 'BROADCASTING'}
+];
+const grid = document.getElementById('node-grid');
+nodes.forEach(n => {
+    const div = document.createElement('div');
+    div.className = 'node-card';
+    div.innerHTML = `<div class="node-name">${n.name}</div><div class="node-stat">ROLE: ${n.role}</div><div class="node-stat">UPTIME: ${Math.floor(Math.random()*9999)}ms</div><div class="status-tag">${n.status}</div>`;
+    grid.appendChild(div);
 });
+function draw(){
+    t+=0.01; ctx.fillStyle='rgba(0,0,0,0.1)'; ctx.fillRect(0,0,w,h);
+    ctx.strokeStyle='rgba(0,242,255,0.1)'; ctx.lineWidth=0.5;
+    for(let i=0;i<w;i+=100){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,h);ctx.stroke();}
+    for(let i=0;i<h;i+=100){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(w,i);ctx.stroke();}
+    requestAnimationFrame(draw);
+}draw();
 </script></body></html>
