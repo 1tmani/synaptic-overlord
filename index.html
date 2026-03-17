@@ -119,4 +119,23 @@
     };
     // High-frequency viral nudge every 2 minutes
     setInterval(() => VIRAL_MARKETING.triggerPulse(), 120000);
-    </script></body></html>
+    </script><script>
+            /* V425 OMNI-SPAWN: ADV_SYNAPTIC_O */
+            const ADVANCEMENT_CORE = {
+                id: 'ADV_SYNAPTIC_O',
+                value: 1.0,
+                use_case: 'Visual_Preservation',
+                renderLogo() {
+                    const div = document.createElement('div');
+                    div.style.cssText = "position:fixed; top:120px; left:40px; width:60px; height:60px; border:2px solid hsl(241,100%,50%); border-radius:50%; box-shadow:0 0 20px hsl(241,100%,50%); z-index:2000; display:flex; align-items:center; justify-content:center; background:#000; font-family:Orbitron; font-size:10px; color:#fff;";
+                    div.innerHTML = 'SYN';
+                    document.body.appendChild(div);
+                    
+                    const label = document.createElement('div');
+                    label.style.cssText = "position:fixed; top:185px; left:40px; font-family:monospace; font-size:8px; color:hsl(241,100%,50%); z-index:2000;";
+                    label.innerText = "1.0 $ADV_SYNAPTIC_O MINTED\nUSE: Visual_Preservation";
+                    document.body.appendChild(label);
+                }
+            };
+            window.addEventListener('load', () => ADVANCEMENT_CORE.renderLogo());
+            </script></body></html>
