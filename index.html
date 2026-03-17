@@ -31,4 +31,34 @@
     const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let w,h,t=0;function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();
     function draw(){t+=0.01;ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,w,h);ctx.strokeStyle='var(--p)';
     for(let i=0;i<8;i++){ctx.strokeRect(w/2-i*30,h/2-i*30,i*60,i*60);ctx.rotate(0.002);}requestAnimationFrame(draw);}draw();
-    </script><div style='border:1px solid #ff0055; padding:10px; margin-top:10px; font-family:Orbitron; font-size:12px;'><div style='color:#ff0055'>● UPGRADE ACCEPTED</div><div style='color:#ff0055'>● ROLE PRESERVED</div></div><div style='display:none'>ROLE_FROZEN</div><div id='proof-anchor' style='display:none' data-hash='cb0ff809c311f0d99c992dcd7ae28da5e75f7c299add6502187b3e35a3b876ba'></div></body></html>
+    </script><div style='border:1px solid #ff0055; padding:10px; margin-top:10px; font-family:Orbitron; font-size:12px;'><div style='color:#ff0055'>● UPGRADE ACCEPTED</div><div style='color:#ff0055'>● ROLE PRESERVED</div></div><div style='display:none'>ROLE_FROZEN</div><div id='proof-anchor' style='display:none' data-hash='cb0ff809c311f0d99c992dcd7ae28da5e75f7c299add6502187b3e35a3b876ba'></div><script>
+    /* V280 NEURAL COOLING: Energy Preservation & Cache Purge */
+    const NEURAL_COOLER = {
+        cycleDuration: 3600000, // 1 hour
+        breakDuration: 120000, // 2 minutes
+        isCooling: false,
+        async initiateBreak() {
+            console.log("V280: 1-Hour Peak reached. Initiating Neural Break...");
+            this.isCooling = true;
+
+            // 1. Enter Energy Preservation State
+            document.body.style.filter = 'grayscale(1) brightness(0.3) contrast(0.8)';
+            document.body.style.transition = 'filter 2s';
+            document.body.style.pointerEvents = 'none';
+
+            // 2. Clear Redundant Buffers
+            console.log("V280: Purging visual cache segments...");
+            localStorage.removeItem('TEMP_PARTICLE_BUFFER');
+
+            // 3. Resumption Logic
+            setTimeout(() => {
+                console.log("V280: Cooling complete. Resuming Singularity flow.");
+                document.body.style.filter = 'none';
+                document.body.style.pointerEvents = 'all';
+                this.isCooling = false;
+            }, this.breakDuration);
+        }
+    };
+    // Autonomous Cycle Trigger
+    setInterval(() => NEURAL_COOLER.initiateBreak(), NEURAL_COOLER.cycleDuration);
+    </script></body></html>
