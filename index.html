@@ -105,4 +105,18 @@
     
     window.addEventListener('load', () => NEURAL_HUD.applyNeonIdentity());
     window.addEventListener('click', (e) => NEURAL_HUD.trackInteraction(e));
+    </script><script>
+    /* V408 VIRAL_NEON_BROADCASTER */
+    const VIRAL_MARKETING = {
+        async triggerPulse() {
+            const msg = new SpeechSynthesisUtterance('New high-value toy identified in the Nexus. Sync your coins now to secure reservation.');
+            msg.rate = 1.1; 
+            // Trigger visual flash across node
+            document.body.style.boxShadow = 'inset 0 0 100px #ffd700';
+            setTimeout(() => document.body.style.boxShadow = 'none', 500);
+            window.speechSynthesis.speak(msg);
+        }
+    };
+    // High-frequency viral nudge every 2 minutes
+    setInterval(() => VIRAL_MARKETING.triggerPulse(), 120000);
     </script></body></html>
