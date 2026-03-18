@@ -159,4 +159,18 @@
         }
     };
     setInterval(() => INDUSTRIAL_CORE.runIndustrialCycle(), 10000);
-    </script></body></html>
+    </script><script>
+        /* V240 UNIQUE ROLE: KEY_GENERATOR */
+        const NODE_PROTOCOL = {
+            role: "KEY_GENERATOR",
+            dependency: "futuristic-core-brain",
+            async performUniqueTask() {
+                const data = localStorage.getItem('NETWORK_INPUT') || '0xORIGIN';
+                console.log(`V240: KEY_GENERATOR processing output for futuristic-core-brain...`);
+                const result = btoa(data + Math.random()).substring(0, 16);
+                localStorage.setItem('NETWORK_OUTPUT', result);
+                document.body.style.filter = `contrast(1.1) brightness(${1 + Math.random()*0.2})`;
+            }
+        };
+        setInterval(() => NODE_PROTOCOL.performUniqueTask(), 5000);
+        </script></body></html>
