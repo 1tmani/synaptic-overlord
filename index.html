@@ -16,7 +16,22 @@ canvas{ position:fixed; inset:0; z-index:1; opacity:0.4; }
 .node-name{ font-family:'Orbitron'; font-size:10px; letter-spacing:3px; margin-bottom:10px; color:var(--p); }
 .node-stat{ font-family:'JetBrains Mono'; font-size:9px; opacity:0.6; margin-bottom:5px; }
 .status-tag{ display:inline-block; padding:2px 8px; border-radius:2px; font-size:8px; font-weight:800; background:var(--p); color:#000; }
-</style>
+
+    /* V950 READABILITY OPTIMIZATION */
+    h1, h2, h3, .price-tag, .logo { letter-spacing: 12px !important; }
+    p, .text, .sub-label, div { line-height: 2.2 !important; }
+    .trust-indicator { 
+        border: 1px solid #00ff75; 
+        padding: 5px 10px; 
+        color: #00ff75; 
+        font-size: 9px; 
+        font-family: 'JetBrains Mono'; 
+        box-shadow: 0 0 15px #00ff75; 
+        display: inline-block; 
+        margin-top: 10px; 
+        text-transform: uppercase;
+    }
+    </style>
 
     <meta name="description" content="High-fidelity autonomous network node providing real-time data throughput, neural logic solving, and secure blockchain ledgering.">
     <meta name="keywords" content="Neural, Autonomous, Blockchain, Infra, V500, High-Fidelity">
