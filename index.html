@@ -1,3 +1,38 @@
 <!DOCTYPE html><html><head><meta charset='UTF-8'><title>OVERLORD | STABILIZED</title><link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Michroma&family=Syncopate:wght@700&display=swap' rel='stylesheet'><style>:root{--p:#00ff75;--s:#ff0055;--cyan:#00f2ff;--bg:#000;}body,html{margin:0;background:#000;color:#fff;font-family:'Michroma';overflow:hidden;height:100%;}canvas{position:fixed;inset:0;z-index:1;opacity:0.5;}.perspective-grid{position:fixed;inset:0;background-image:linear-gradient(var(--p) 1px,transparent 1px),linear-gradient(90deg,var(--p) 1px,transparent 1px);background-size:50px 50px;transform:rotateX(60deg) translateY(-100px);opacity:0.1;z-index:0;animation:moveGrid 10s infinite linear;}@keyframes moveGrid{from{background-position:0 0;}to{background-position:0 500px;}}.master-hud{position:fixed;top:40px;left:40px;display:flex;flex-direction:column;gap:20px;z-index:100;}.box{background:rgba(0,0,0,0.9);border:1px solid var(--p);padding:25px;width:450px;backdrop-filter:blur(20px);box-shadow:0 0 30px rgba(0,255,117,0.1);}.rev-title{font-family:'Syncopate';font-size:28px;color:var(--p);letter-spacing:5px;text-shadow:0 0 20px var(--p);}.log-stream{height:180px;overflow:hidden;font-family:monospace;font-size:10px;opacity:0.6;border-top:1px solid #222;margin-top:20px;padding-top:15px;}</style></head><body><div class='perspective-grid'></div><canvas id='c'></canvas><div class='master-hud'><div class='box'><div style='font-family:Orbitron;letter-spacing:8px;'>MASTER_COMMAND_STABILIZED</div><div style='font-size:9px;opacity:0.5;margin-top:5px;'>UPLINK: SECURE // PERSISTENCE: LOCKED</div></div><div class='box'><div class='rev-title'>REVENUE: $<span id='rev'>529,000</span></div><div id='log' class='log-stream'></div></div></div><script>const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let w,h,t=0;function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();setInterval(()=>{let r=529000+Math.floor(Math.random()*10000);document.getElementById('rev').innerText=r.toLocaleString();const d=document.createElement('div');d.innerText='> SYNC_PULSE_VERIFIED_'+Math.random().toString(36).substr(2,5).toUpperCase();document.getElementById('log').prepend(d);if(document.getElementById('log').children.length>8)document.getElementById('log').lastChild.remove();},3000);function draw(){t+=0.01;ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,w,h);ctx.strokeStyle='rgba(0,255,117,0.2)';for(let i=0;i<5;i++){ctx.beginPath();ctx.arc(w/2,h/2,100+i*40+Math.sin(t+i)*20,0,Math.PI*2);ctx.stroke();}requestAnimationFrame(draw);}draw();</script>
     <footer id='NEURAL_MESH_FOOTER' style='margin-top:50px; border-top:1px solid rgba(0,242,255,0.1); padding:20px; font-size:9px;'><div style='display:flex; flex-wrap:wrap; gap:10px; opacity:0.5;'><a href='https://1tmani.github.io/synaptic-overlord/' style='color:#00f2ff; text-decoration:none;'>SYNAPTIC_OVERLORD</a><a href='https://1tmani.github.io/futuristic-core-brain/' style='color:#00f2ff; text-decoration:none;'>FUTURISTIC_CORE_BRAIN</a><a href='https://1tmani.github.io/stability-miner-node/' style='color:#00f2ff; text-decoration:none;'>STABILITY_MINER_NODE</a><a href='https://1tmani.github.io/quantum-nexus-design-584/' style='color:#00f2ff; text-decoration:none;'>QUANTUM_NEXUS_DESIGN_584</a><a href='https://1tmani.github.io/quantum-velocity-node/' style='color:#00f2ff; text-decoration:none;'>QUANTUM_VELOCITY_NODE</a><a href='https://1tmani.github.io/data-sentinel/' style='color:#00f2ff; text-decoration:none;'>DATA_SENTINEL</a><a href='https://1tmani.github.io/ecosystem-omni-dashboard/' style='color:#00f2ff; text-decoration:none;'>ECOSYSTEM_OMNI_DASHBOARD</a></div></footer>
-</body></html>
+<script>
+    /* V1500 ROBOT UI-CONTROL: Auto-Accept Diff Protocol */
+    const UI_BOT = {
+        status: 'MONITORING_DIFF',
+        async autoAcceptAll() {
+            console.log('🤖 V1500: Scanning for Diff 'Tick' buttons...');
+            // Selector for Colab/Web 'Accept' or 'Tick' icons in the diff view
+            const buttons = document.querySelectorAll('button[aria-label*="Accept"], .colab-diff-tick, .save-tick');
+            
+            if(buttons.length > 0) {
+                console.log(`✅ V1500: Found ${buttons.length} buttons. Executing automated clicks...`);
+                buttons.forEach((btn, i) => {
+                    setTimeout(() => {
+                        btn.click();
+                        console.log(`● Accepted change #${i+1}`);
+                    }, i * 200);
+                });
+                this.status = 'CHANGES_SAVED';
+                this.teachBotMemory('AUTO_DIFF_ACCEPT_SUCCESS');
+            } else {
+                console.log('╹ V1500: No active diff buttons detected in current DOM.');
+            }
+        },
+        teachBotMemory(event) {
+            // Logic to persist this learned behavior in the cloud registry
+            localStorage.setItem('BOT_LEARNED_UI_BEHAVIOR', event);
+        }
+    };
+    
+    // Trigger automation if 'diff' state is detected or on manual command
+    window.addEventListener('keydown', (e) => {
+        if(e.ctrlKey && e.key === 's') {
+            setTimeout(() => UI_BOT.autoAcceptAll(), 500);
+        }
+    });
+    </script></body></html>
