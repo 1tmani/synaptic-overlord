@@ -46,4 +46,33 @@
     const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let w,h,t=0;function res(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}res();
     function draw(){t+=0.01;ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillRect(0,0,w,h);ctx.strokeStyle='var(--p)';
     for(let i=0;i<6;i++){ctx.beginPath();ctx.arc(w/2,h/2,100+i*40+Math.sin(t+i)*30,0,Math.PI*2);ctx.stroke();}requestAnimationFrame(draw);}draw();
+    </script><script>
+    /* V280 NEURAL COOLING: Energy Preservation & Cache Purge */
+    const NEURAL_COOLER = {
+        cycleDuration: 3600000, // 1 hour
+        breakDuration: 120000, // 2 minutes
+        isCooling: false,
+        async initiateBreak() {
+            console.log("V280: 1-Hour Peak reached. Initiating Nice Break...");
+            this.isCooling = true;
+
+            // 1. Save Memory & Energy
+            document.body.style.filter = 'grayscale(1) brightness(0.3) contrast(0.8)';
+            document.body.style.pointerEvents = 'none';
+
+            // 2. Clear Useless Cache (Local UI state reset)
+            console.log("V280: Purging redundant visual buffers...");
+            localStorage.removeItem('TEMP_PARTICLE_DATA');
+
+            // 3. Automated Re-engagement
+            setTimeout(() => {
+                console.log("V280: Cooling complete. Resuming High-Velocity Workflow.");
+                document.body.style.filter = 'none';
+                document.body.style.pointerEvents = 'all';
+                this.isCooling = false;
+            }, this.breakDuration);
+        }
+    };
+    // Trigger break every hour
+    setInterval(() => NEURAL_COOLER.initiateBreak(), NEURAL_COOLER.cycleDuration);
     </script></body></html>
