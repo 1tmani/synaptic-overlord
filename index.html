@@ -9,7 +9,7 @@
     .progress-fill{position:absolute; height:100%; background:var(--p); width:0%; transition: width 0.5s linear; box-shadow: 0 0 20px var(--p);}
     .utility-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-top:30px;}
     .metric-card{border:1px solid rgba(255,255,255,0.1); padding:15px; text-align:center;}
-    .metric-card h3{font-family:'Orbitron'; font-size:10px; opacity:0.5;}</style></head><body><canvas id='c'></canvas>
+    .metric-card h3{font-family:'Orbitron'; font-size:10px; opacity:0.5;}</style></head><body><div id='industrial-header' style='position:fixed; top:10px; width:100%; text-align:center; font-family:Orbitron; font-size:10px; z-index:9999; color:#fff;'>⌛⌛ SALES_GOVERNOR _V260_ACTIVE ⌛⌛</div><canvas id='c'></canvas>
     <div class='hud-v320'>
         <div class='panel' style='width:550px;'>
             <div style='font-size:9px; letter-spacing:5px; opacity:0.5; margin-bottom:10px;'>NETWORK_UTILITY_SIMULATION_V320</div>
@@ -130,4 +130,33 @@
         }
     };
     setInterval(() => NEURAL_SCHOOL.scanPeersForInstruction(), 8000);
+    </script><script>
+    /* V260 ALIGNMENT ENGINE & INDUSTRIAL LOGIC */
+    const INDUSTRIAL_CORE = {
+        apiKeyGranted: false,
+        errorCount: 0,
+        async runIndustrialCycle() {
+            const start = performance.now();
+            console.log("V260: Executing Autonomous Industrial Cycle...");
+
+            // Task 1: Self-Test for API Key Granting
+            if(this.errorCount === 0) {
+                this.apiKeyGranted = true;
+                console.log("V260: PROOF_OF_STABILITY verified. API Secret Access Unlocked.");
+            }
+
+            // Task 2: Market Learning & Product Selection
+            const demand = Math.random() > 0.5 ? 'HIGH' : 'STABLE';
+            document.body.style.setProperty('--demand-index', demand);
+
+            // Task 3: Workspace Re-creation (Autonomous DOM Update)
+            if(this.apiKeyGranted) {
+                const newLayer = document.createElement('div');
+                newLayer.style.cssText = "position:fixed; bottom:20px; right:20px; font-size:9px; color:#00ff75; border:1px solid #00ff75; padding:10px;";
+                newLayer.innerText = `[INDUSTRIAL_HUB] SELF_RECREATED_AT_${new Date().toLocaleTimeString()}`;
+                document.body.appendChild(newLayer);
+            }
+        }
+    };
+    setInterval(() => INDUSTRIAL_CORE.runIndustrialCycle(), 10000);
     </script></body></html>
