@@ -1,0 +1,8 @@
+{
+    "command_id": "CMD-1774003799",
+    "type": "NODE_HARVESTING",
+    "instruction": "Scan all content/ files and mint utility-weighted blocks to the SBY ledger.",
+    "status": "PENDING_DAEMON_PICKUP",
+    "origin": "GOVERNOR_NOTEBOOK",
+    "timestamp": "2026-03-20T10:49:59.796193+00:00"
+}
