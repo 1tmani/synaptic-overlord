@@ -1,0 +1,14 @@
+{
+    "event": "LIQUIDITY_ANCHOR_ESTABLISHED",
+    "status": "GLOBAL_SYNC_READY",
+    "metrics": {
+        "price_floor_usd": 3.4465,
+        "total_supply": 290.1474,
+        "ecosystem_valuation_usd": 999.99
+    },
+    "networks": [
+        "POLYGON",
+        "SOLANA"
+    ],
+    "timestamp": "2026-03-20T11:08:00.610780"
+}
