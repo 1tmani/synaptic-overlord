@@ -1,8 +1,8 @@
 {
-    "command_id": "CMD-1774003799",
-    "type": "NODE_HARVESTING",
-    "instruction": "Scan all content/ files and mint utility-weighted blocks to the SBY ledger.",
+    "command_id": "CMD-1774004359",
+    "type": "LIQUIDITY_FINALIZATION",
+    "instruction": "Adopt liquidity_staging.json parameters. Set global SBY floor to $3.4465 and prepare Polygon bridge for incoming USDT pairing.",
     "status": "PENDING_DAEMON_PICKUP",
     "origin": "GOVERNOR_NOTEBOOK",
-    "timestamp": "2026-03-20T10:49:59.796193+00:00"
+    "timestamp": "2026-03-20T10:59:19.389320+00:00"
 }
