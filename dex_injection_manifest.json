@@ -1,0 +1,17 @@
+{
+    "action": "DEX_POOL_INJECTION",
+    "params": {
+        "token_name": "STABILITY_MINER_COIN",
+        "ticker": "$SBY",
+        "amount_to_pool": 290.1474,
+        "initial_price_usd": 3.4465,
+        "paired_stablecoin": "USDT",
+        "target_dex": "UNISWAP_V3_POLYGON"
+    },
+    "security": {
+        "bridge_confirmation": "sby_sol_17f02fa099dfa2c75dde43f7",
+        "encryption": "AES-256-GCM",
+        "governor_signed": true
+    },
+    "timestamp": "2026-03-20T11:14:11.308045"
+}
